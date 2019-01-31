@@ -16,12 +16,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/NordicSemiconductor/pc-ble-driver-js.git"
+    "url": "https://github.com/bencefr/pc-ble-driver-js.git"
   },
   "binary": {
     "module_name": "pc-ble-driver-js-sd_api_v3",
     "module_path": "./build/Release",
-    "host": "https://github.com/NordicSemiconductor/pc-ble-driver-js/releases/download/",
+    "host": "https://github.com/bencefr/pc-ble-driver-js/releases/download/",
     "remote_path": "v{version}"
   },
   "author": "Nordic Semiconductor ASA",
@@ -46,8 +46,8 @@
     "jszip": "^3.1.2",
     "nan": "2.3.3",
     "node-pre-gyp": "^0.6.39",
-    "nrf-device-lister": "^2.1.0",
-    "nrf-device-setup": "^0.4.0",
+    "nrf-device-lister": "^2.1.1",
+    "nrf-device-setup": "^0.4.5",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
@@ -69,7 +69,7 @@
     "keypress": "0.2.1",
     "minami": "^1.2.3",
     "mocha": "^2.3.3",
-    "node-pre-gyp-github": "1.3.1",
+    "node-pre-gyp-github": "1.3.4",
     "proxyquire": "^1.7.3",
     "sinon": "^1.17.1",
     "yargs": "^3.29.0"
