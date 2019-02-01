@@ -45,6 +45,10 @@ matrix:
 
 before_install:
 - |
+  if [ $TRAVIS_OS_NAME == "linux" ]; then
+    sudo apt-get install -y libudev-dev
+  fi
+- |
   if [ $TRAVIS_OS_NAME == "windows" ]; then
     choco install -y nvm
     export NVM_HOME="C:\ProgramData\nvm"
@@ -56,9 +60,10 @@ before_install:
     nvm install $NODE_VERSION
     nvm use $NODE_VERSION
   fi
-  git clone https://github.com/Microsoft/vcpkg.git
-  vcpkg/bootstrap-vcpkg.sh
-  vcpkg install boost-thread boost-system boost-regex boost-date-time boost-chrono
+  git clone --branch master https://github.com/Microsoft/vcpkg.git
+  ./vcpkg/bootstrap-vcpkg.sh
+  ./vcpkg/vcpkg install boost-thread boost-system boost-regex boost-date-time boost-chrono
+  npm config set cmake_CMAKE_TOOLCHAIN_FILE=$(pwd)/vcpkg/scripts/buildsystems/vcpkg.cmake
 
 script:
 - npm install
