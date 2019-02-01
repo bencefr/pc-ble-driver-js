@@ -64,7 +64,7 @@ before_install:
   fi
   git clone --branch master https://github.com/Microsoft/vcpkg.git
   ./vcpkg/bootstrap-vcpkg.sh
-  ./vcpkg/vcpkg install boost-thread boost-system boost-regex boost-date-time boost-chrono
+  ./vcpkg/vcpkg install boost-thread boost-system boost-regex boost-date-time boost-chrono boost-asio
   npm config set cmake_CMAKE_TOOLCHAIN_FILE=$(pwd)/vcpkg/scripts/buildsystems/vcpkg.cmake
 
 script:
