@@ -64,6 +64,8 @@ before_install:
     nvm install $NODE_VERSION $NODE_ARCH
     nvm use $NODE_VERSION $NODE_ARCH
     ./vcpkg/bootstrap-vcpkg.bat
+    npm install --scripts-prepend-node-path=true --global --vs2015 --production windows-build-tools
+    npm config set msvs_version 2015
   else
     nvm install $NODE_VERSION
     nvm use $NODE_VERSION
