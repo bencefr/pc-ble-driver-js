@@ -47,6 +47,15 @@ add_definitions(
     -DPC_BLE_DRIVER_STATIC
 )
 
+
+if(WIN32)
+elseif(APPLE)
+    add_compile_options(-pthread -std=c++11)
+else()
+    add_compile_options(-std=c++11)
+endif()
+
+
 foreach(SD_API_VER ${SD_API_VERS})
     string(TOLOWER ${SD_API_VER} SD_API_VER_L)
     set(CURRENT_TARGET pc-ble-driver-js-${SD_API_VER_L})
