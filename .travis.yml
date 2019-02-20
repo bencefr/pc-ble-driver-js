@@ -21,6 +21,9 @@ addons:
       - g++-7
       - libudev-dev
       - ninja-build
+  homebrew:
+    packages:
+      - ninja
 
 env:
   global:
