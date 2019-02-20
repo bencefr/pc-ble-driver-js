@@ -90,7 +90,7 @@ before_install:
   if [ $TRAVIS_OS_NAME == "windows" ]; then
     ./bootstrap.bat
     ./b2 toolset=msvc-14.0 address-model=${NODE_ARCH} link=static --with-thread --with-system --with-regex --with-date_time --with-chrono
-  elif [ $TRAVIS_OS_NAME == "linux" ]
+  elif [ $TRAVIS_OS_NAME == "linux" ]; then
     ./bootstrap.sh
     ./b2 toolset=gcc cxxflags=-fPIC cflags=-fPIC address-model=${NODE_ARCH} link=static --with-thread --with-system --with-regex --with-date_time --with-chrono
   else
