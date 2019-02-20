@@ -44,13 +44,16 @@ function getBuildSystem(debug) {
     const defaultRuntime = 'node';
     const defaultRuntimeVersion = process.version.substr(1);
     const defaultWinArch = os.arch();
+    const generator = process.platform === 'win32'
+        ? 'Visual Studio 14 2015'
+        : 'Ninja';
 
     const options = {
         runtime: process.env.npm_config_runtime || undefined,
         runtimeVersion: process.env.npm_config_target || undefined,
         arch: process.env.npm_config_arch || undefined,
+        generator,
         debug,
-        preferGnu: true,
     };
 
     const buildSystem = new cmakeJS.BuildSystem(options);

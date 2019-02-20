@@ -20,6 +20,7 @@ addons:
     packages:
       - g++-7
       - libudev-dev
+      - ninja-build
 
 env:
   global:
