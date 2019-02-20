@@ -48,6 +48,10 @@ const spawn = require('child_process').spawn;
 const BUILD_CONFIGS = [
     {
         npm_config_runtime: 'node',
+        npm_config_target: '10.15.1',
+    },
+    {
+        npm_config_runtime: 'node',
         npm_config_target: '8.12.0',
     },
     {
@@ -67,6 +71,11 @@ const BUILD_CONFIGS = [
     {
         npm_config_runtime: 'electron',
         npm_config_target: '2.0.6',
+        npm_config_disturl: 'https://atom.io/download/electron',
+    },
+    {
+        npm_config_runtime: 'electron',
+        npm_config_target: '4.0.5',
         npm_config_disturl: 'https://atom.io/download/electron',
     },
 ];
