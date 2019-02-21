@@ -44,9 +44,7 @@ function getBuildSystem(debug) {
     const defaultRuntime = 'node';
     const defaultRuntimeVersion = process.version.substr(1);
     const defaultWinArch = os.arch();
-    const generator = process.platform === 'win32'
-        ? 'Visual Studio 14 2015'
-        : 'Ninja';
+    const generator = process.env.CMAKE_GENERATOR || 'Ninja';
 
     const options = {
         runtime: process.env.npm_config_runtime || undefined,
