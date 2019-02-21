@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.3)
 
 # Name of the project (will be the name of the plugin)
 project (pc-ble-driver-js)
@@ -48,11 +48,14 @@ add_definitions(
 )
 
 
-if(WIN32)
+# Compiler specific
+if(MSVC)
+    include(${CMAKE_CURRENT_LIST_DIR}/cmake/msvc.cmake)
 elseif(APPLE)
-    add_compile_options(-pthread -std=c++11)
+    include(${CMAKE_CURRENT_LIST_DIR}/cmake/apple.cmake)
 else()
-    add_compile_options(-std=c++11)
+    # Linux
+    include(${CMAKE_CURRENT_LIST_DIR}/cmake/gcc.cmake)
 endif()
 
 

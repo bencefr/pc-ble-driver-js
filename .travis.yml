@@ -9,19 +9,13 @@ filter_secrets: false
 
 addons:
   apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-7
-      - libudev-dev
-      - ninja-build
+    sources: ubuntu-toolchain-r-test
+    packages: g++-7 libudev-dev ninja-build
   homebrew:
-    packages:
-      - ninja
+    packages: ninja
 
 env:
-  global:
-  - NODE_ARCH="64"
+  global: NODE_ARCH="64"
 
 matrix:
   include:
@@ -57,23 +51,18 @@ matrix:
     env: NODE_ARCH="32" NODE_VERSION="10.15.0" npm_config_runtime="electron" npm_config_target="4.0.1" npm_config_disturl="https://atom.io/download/electron"
   - os: osx
     osx_image: xcode10.1
-    compiler: clang
     env: NODE_VERSION="8.15.0"
   - os: osx
     osx_image: xcode10.1
-    compiler: clang
     env: NODE_VERSION="10.15.0"
   - os: osx
     osx_image: xcode10.1
-    compiler: clang
     env: NODE_VERSION="11.7.0"
   - os: osx
     osx_image: xcode10.1
-    compiler: clang
     env: NODE_VERSION="8.15.0" npm_config_runtime="electron" npm_config_target="2.0.6" npm_config_disturl="https://atom.io/download/electron"
   - os: osx
     osx_image: xcode10.1
-    compiler: clang
     env: NODE_VERSION="10.15.0" npm_config_runtime="electron" npm_config_target="4.0.1" npm_config_disturl="https://atom.io/download/electron"
 
 before_install:
@@ -98,15 +87,7 @@ before_install:
   if [ $TRAVIS_OS_NAME == "windows" ]; then
     npm install --scripts-prepend-node-path=true --global --vs2015 --production windows-build-tools
     npm config set msvs_version 2015
-    if [ "${NODE_ARCH}" == "64" ]; then
-      npm config set cmake_js_G "Visual Studio 14"
-    else
-      npm config set cmake_js_G "Visual Studio 14 Win32"
-    fi
-  elif [ $TRAVIS_OS_NAME == "linux" ]; then
-    npm config set cmake_js_G "Ninja"
-  else
-    npm config set cmake_js_G "Ninja"
+  elif [ $TRAVIS_OS_NAME == "osx" ]; then
     npm config set cmake_CMAKE_CXX_COMPILER "g++"
     npm config set cmake_CMAKE_C_COMPILER "gcc"
   fi
