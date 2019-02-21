@@ -4,7 +4,6 @@ branches:
     - /^v?[0-9]/
 
 language: cpp
-# compiler: gcc
 
 filter_secrets: false
 
@@ -48,18 +47,23 @@ matrix:
     env: NODE_ARCH="32" NODE_VERSION="10.15.0" npm_config_runtime="electron" npm_config_target="4.0.1" npm_config_disturl="https://atom.io/download/electron"
   - os: osx
     osx_image: xcode10.1
+    compiler: clang
     env: NODE_VERSION="8.15.0"
   - os: osx
     osx_image: xcode10.1
+    compiler: clang
     env: NODE_VERSION="10.15.0"
   - os: osx
     osx_image: xcode10.1
+    compiler: clang
     env: NODE_VERSION="11.7.0"
   - os: osx
     osx_image: xcode10.1
+    compiler: clang
     env: NODE_VERSION="8.15.0" npm_config_runtime="electron" npm_config_target="2.0.6" npm_config_disturl="https://atom.io/download/electron"
   - os: osx
     osx_image: xcode10.1
+    compiler: clang
     env: NODE_VERSION="10.15.0" npm_config_runtime="electron" npm_config_target="4.0.1" npm_config_disturl="https://atom.io/download/electron"
 
 before_install:
@@ -92,13 +96,13 @@ before_install:
   cd $BOOST_ROOT
   if [ $TRAVIS_OS_NAME == "windows" ]; then
     ./bootstrap.bat
-    ./b2 toolset=msvc-14.0 address-model=${NODE_ARCH} link=static --with-thread --with-system --with-regex --with-date_time --with-chrono
+    ./b2 toolset=msvc-14.0 address-model=${NODE_ARCH} variant=release link=static --with-thread --with-system --with-regex --with-date_time --with-chrono
   elif [ $TRAVIS_OS_NAME == "linux" ]; then
     ./bootstrap.sh
-    ./b2 toolset=gcc cxxflags=-fPIC cflags=-fPIC address-model=${NODE_ARCH} link=static --with-thread --with-system --with-regex --with-date_time --with-chrono
+    ./b2 toolset=gcc cxxflags=-fPIC cflags=-fPIC address-model=${NODE_ARCH} variant=release link=static --with-thread --with-system --with-regex --with-date_time --with-chrono
   else
     ./bootstrap.sh
-    ./b2 cxxflags=-fPIC cflags=-fPIC address-model=${NODE_ARCH} link=static --with-thread --with-system --with-regex --with-date_time --with-chrono
+    ./b2 cxxflags=-fPIC cflags=-fPIC address-model=${NODE_ARCH} variant=release link=static --with-thread --with-system --with-regex --with-date_time --with-chrono
   fi
 
 script:
