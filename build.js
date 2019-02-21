@@ -44,13 +44,11 @@ function getBuildSystem(debug) {
     const defaultRuntime = 'node';
     const defaultRuntimeVersion = process.version.substr(1);
     const defaultWinArch = os.arch();
-    const generator = process.env.CMAKE_GENERATOR || 'Ninja';
 
     const options = {
         runtime: process.env.npm_config_runtime || undefined,
         runtimeVersion: process.env.npm_config_target || undefined,
         arch: process.env.npm_config_arch || undefined,
-        generator,
         debug,
     };
 

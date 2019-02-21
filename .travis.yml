@@ -36,25 +36,25 @@ matrix:
   - os: linux
     env: NODE_VERSION="10.15.0" npm_config_runtime="electron" npm_config_target="4.0.1" npm_config_disturl="https://atom.io/download/electron"
   - os: windows
-    env: NODE_VERSION="8.15.0" CMAKE_GENERATOR="Visual Studio 14 Win64"
+    env: NODE_VERSION="8.15.0"
   - os: windows
-    env: NODE_VERSION="10.15.0" CMAKE_GENERATOR="Visual Studio 14 Win64"
+    env: NODE_VERSION="10.15.0"
   - os: windows
-    env: NODE_VERSION="11.7.0" CMAKE_GENERATOR="Visual Studio 14 Win64"
+    env: NODE_VERSION="11.7.0"
   - os: windows
-    env: NODE_VERSION="8.15.0" npm_config_runtime="electron" npm_config_target="2.0.6" npm_config_disturl="https://atom.io/download/electron" CMAKE_GENERATOR="Visual Studio 14 Win64"
+    env: NODE_VERSION="8.15.0" npm_config_runtime="electron" npm_config_target="2.0.6" npm_config_disturl="https://atom.io/download/electron"
   - os: windows
-    env: NODE_VERSION="10.15.0" npm_config_runtime="electron" npm_config_target="4.0.1" npm_config_disturl="https://atom.io/download/electron" CMAKE_GENERATOR="Visual Studio 14 Win64"
+    env: NODE_VERSION="10.15.0" npm_config_runtime="electron" npm_config_target="4.0.1" npm_config_disturl="https://atom.io/download/electron"
   - os: windows
-    env: NODE_ARCH="32" NODE_VERSION="8.15.0" CMAKE_GENERATOR="Visual Studio 14"
+    env: NODE_ARCH="32" NODE_VERSION="8.15.0"
   - os: windows
-    env: NODE_ARCH="32" NODE_VERSION="10.15.0" CMAKE_GENERATOR="Visual Studio 14"
+    env: NODE_ARCH="32" NODE_VERSION="10.15.0"
   - os: windows
-    env: NODE_ARCH="32" NODE_VERSION="11.7.0" CMAKE_GENERATOR="Visual Studio 14"
+    env: NODE_ARCH="32" NODE_VERSION="11.7.0"
   - os: windows
-    env: NODE_ARCH="32" NODE_VERSION="8.15.0" npm_config_runtime="electron" npm_config_target="2.0.6" npm_config_disturl="https://atom.io/download/electron" CMAKE_GENERATOR="Visual Studio 14"
+    env: NODE_ARCH="32" NODE_VERSION="8.15.0" npm_config_runtime="electron" npm_config_target="2.0.6" npm_config_disturl="https://atom.io/download/electron"
   - os: windows
-    env: NODE_ARCH="32" NODE_VERSION="10.15.0" npm_config_runtime="electron" npm_config_target="4.0.1" npm_config_disturl="https://atom.io/download/electron" CMAKE_GENERATOR="Visual Studio 14"
+    env: NODE_ARCH="32" NODE_VERSION="10.15.0" npm_config_runtime="electron" npm_config_target="4.0.1" npm_config_disturl="https://atom.io/download/electron"
   - os: osx
     osx_image: xcode10.1
     compiler: clang
@@ -98,6 +98,17 @@ before_install:
   if [ $TRAVIS_OS_NAME == "windows" ]; then
     npm install --scripts-prepend-node-path=true --global --vs2015 --production windows-build-tools
     npm config set msvs_version 2015
+    if [ "${NODE_ARCH}" == "64" ]; then
+      npm config set cmake_js_G "Visual Studio 14"
+    else
+      npm config set cmake_js_G "Visual Studio 14 Win32"
+    fi
+  elif [ $TRAVIS_OS_NAME == "linux" ]; then
+    npm config set cmake_js_G "Ninja"
+  else
+    npm config set cmake_js_G "Ninja"
+    npm config set cmake_CMAKE_CXX_COMPILER "g++"
+    npm config set cmake_CMAKE_C_COMPILER "gcc"
   fi
 - wget -O boost.tgz https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.tar.gz
 - tar xzf boost.tgz
