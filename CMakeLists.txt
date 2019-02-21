@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 3.3)
 # Name of the project (will be the name of the plugin)
 project (pc-ble-driver-js)
 
+set(CMAKE_CXX_STANDARD 11) # C++11...
+set(CMAKE_CXX_STANDARD_REQUIRED ON) #...is required...
+set(CMAKE_CXX_EXTENSIONS OFF) #...without compiler extensions like gnu++11
+
 # All projects depending on pc-ble-driver need to include this first
 include(pc-ble-driver/cmake/pc-ble-driver.cmake)
 add_subdirectory(pc-ble-driver)
