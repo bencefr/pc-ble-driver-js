@@ -50,9 +50,9 @@ function getBuildSystem(debug) {
         generator = 'Ninja';
         if (process.platform === 'win32') {
             if (process.arch === 'ia32') {
-                generator = 'Visual Studio 2014';
+                generator = 'Visual Studio 14 2015';
             } else {
-                generator = 'Visual Studio 2014 Win64';
+                generator = 'Visual Studio 14 2015 Win64';
             }
         }
     }
